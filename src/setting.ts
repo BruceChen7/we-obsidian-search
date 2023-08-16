@@ -1,4 +1,4 @@
-import { PluginSettingTab, App} from "obsidian";
+import { PluginSettingTab, App, Setting} from "obsidian";
 import WeSearch from "src/main";
 
 export interface WeSearchSettings {
@@ -23,6 +23,15 @@ export class WeSearchTab extends PluginSettingTab {
 	display() {
 		const {containerEl} = this;
 		containerEl.empty();
+		new Setting(containerEl)
+			.setName("Enable Semantra")
+			.setDesc("Use Semantra To Search")
+			.addToggle(toggle => toggle. 
+				setValue(this.plugin.settings.enableSemantra)
+				.onChange(async (value) => {
+					this.plugin.settings.enableSemantra = value;
+					await this.plugin.saveSettings();
+				}));
 	}
 
 }
