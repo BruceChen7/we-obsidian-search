@@ -32,6 +32,23 @@ export class WeSearchTab extends PluginSettingTab {
 					this.plugin.settings.enableSemantra = value;
 					await this.plugin.saveSettings();
 				}));
+		new Setting(containerEl)
+			.setName("Enable Khoj")
+			.setDesc("Use Khoj To Search")
+			.addToggle(toggle => toggle.
+				setValue(this.plugin.settings.enableKhoj)
+			.onChange(async (value) => {
+				this.plugin.settings.enableKhoj = value;
+				await this.plugin.saveSettings();
+			}));
+		new Setting(containerEl)
+			.setName("Enable ripgrep")
+			.setDesc("Use ripgrep To Search")
+			.addToggle(toggle =>toggle.setValue(this.plugin.settings.enableRg)
+			.onChange(async (value) => {
+				this.plugin.settings.enableRg = value;
+				await this.plugin.saveSettings();
+			}));
 	}
 
 }
